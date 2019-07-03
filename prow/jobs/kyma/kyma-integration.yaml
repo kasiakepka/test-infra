@@ -531,8 +531,6 @@ periodics:
 # Purpose of this job is to avoid error: "Login profile size exceeds 32 KiB" when running kyma-integration tests
 - name: periodic-kyma-xip-gke-upgrade
   cron: "30 */2 * * *" # "every 2 hours"
-  branches:
-   - ^master$
   <<: *gke_xip_upgrade_job_template
   labels:
     preset-build-master: "true"
