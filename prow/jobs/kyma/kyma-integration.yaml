@@ -540,12 +540,12 @@ periodics:
     <<: *gke_job_labels_template
   extra_refs:
   - <<: *test_infra_ref
+    base_ref: master
   - org: kyma-project
     repo: kyma
     base_ref: master
     path_alias: github.com/kyma-project/kyma
-  base_ref: master
-
+    
 - name: utilities-kyma-integration-cleaner
   cron: "30 * * * *" # "At 30 minutes past every hour"
   labels:
