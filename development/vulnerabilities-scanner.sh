@@ -106,9 +106,8 @@ function testComponents() {
 
     echo "processing ${DIR}"
     # https://github.com/golang/dep/issues/2107
-    echo "SOURCES: `ls /workspace/go/pkg/dep/sources/ | wc -l`"
+    echo "SOURCES: `tree /workspace/go/pkg/`"
     rm -rf /workspace/go/pkg/dep/sources
-    echo "AFTER CLENUP: `ls /workspace/go/pkg/dep/sources/ | wc -l`"
 
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
