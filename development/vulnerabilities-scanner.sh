@@ -106,7 +106,7 @@ function testComponents() {
 
     echo "processing ${DIR}"
     # https://github.com/golang/dep/issues/2107
-    rm -rf $WORKSPACE/go/pkg/dep/sources
+    rm -rf /workspace/go/pkg/dep/sources
 
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
