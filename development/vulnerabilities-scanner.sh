@@ -105,6 +105,7 @@ function testComponents() {
   do
 
     echo "processing ${DIR}"
+    echo "`dep version`"
     # https://github.com/golang/dep/issues/2107
     rm -rf /workspace/go/pkg/dep/sources
 
@@ -131,6 +132,8 @@ function testComponents() {
         sendSlackNotification "${COMPONENT_TO_TEST}"
       fi
       echo " └── finished"
+      
+      sleep 1h  
     fi
   done
 }
@@ -140,5 +143,3 @@ authenticate
 
 # test components with snyk
 testComponents
-
-sleep 1h
