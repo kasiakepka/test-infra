@@ -106,8 +106,6 @@ function testComponents() {
 
     echo "processing ${DIR}"
     # https://github.com/golang/dep/issues/2107
-    echo "SOURCES: `tree /workspace/go/pkg/`"
-    rm -rf /workspace/go/pkg/dep/sources
 
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
@@ -115,6 +113,7 @@ function testComponents() {
       # fetch dependencies
       echo " ├── fetching dependencies..."
       cd "${DIR}"
+      rm -rf ./vendor
       dep ensure --vendor-only
 
       # scan for vulnerabilities
