@@ -107,8 +107,9 @@ function testComponents() {
     echo "processing ${DIR}"
 
     # https://github.com/golang/dep/issues/2107
+    echo "BEFORE REMOVING SOURCES: `ls /workspace/go/pkg/dep/`"
     rm -rf /workspace/go/pkg/dep/sources/
-    ls /workspace/go/pkg/dep/
+    echo "AFTER: `ls /workspace/go/pkg/dep/`"
 
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
@@ -133,8 +134,8 @@ function testComponents() {
         sendSlackNotification "${COMPONENT_TO_TEST}"
       fi
       echo " └── finished"
-      
-      sleep 1h  
+      rm -rf ${DIR}/vendor
+
     fi
   done
 }
