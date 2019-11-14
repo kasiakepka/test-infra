@@ -105,9 +105,10 @@ function testComponents() {
   do
 
     echo "processing ${DIR}"
-    echo "`dep version`"
+
     # https://github.com/golang/dep/issues/2107
-    rm -rf /workspace/go/pkg/dep/sources
+    rm -rf /workspace/go/pkg/dep/sources/
+    ls /workspace/go/pkg/dep/
 
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
