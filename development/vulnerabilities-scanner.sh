@@ -101,15 +101,14 @@ function sendSlackNotification() {
 }
 
 function testComponents() {
+  echo "`printenv`"
   for DIR in ${KYMA_SOURCES_DIR}/components/*/
   do
 
     echo "processing ${DIR}"
 
     # https://github.com/golang/dep/issues/2107
-    echo "BEFORE REMOVING SOURCES: `ls /workspace/go/pkg/dep/`"
-    rm -rf /workspace/go/pkg/dep/sources/
-    echo "AFTER: `ls /workspace/go/pkg/dep/`"
+    rm -rf $GOPATH/pkg/dep/sources
 
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
@@ -134,7 +133,8 @@ function testComponents() {
         sendSlackNotification "${COMPONENT_TO_TEST}"
       fi
       echo " └── finished"
-      rm -rf ${DIR}/vendor
+
+      rm -rf $GOPATH/pkg/dep/sources
 
     fi
   done
