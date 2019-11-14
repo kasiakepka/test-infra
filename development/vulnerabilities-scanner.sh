@@ -114,7 +114,6 @@ function testComponents() {
       # fetch dependencies
       echo " ├── fetching dependencies..."
       cd "${DIR}"
-      rm -rf ./vendor
       dep ensure --vendor-only
 
       # scan for vulnerabilities
@@ -141,3 +140,5 @@ authenticate
 
 # test components with snyk
 testComponents
+
+sleep 1h
