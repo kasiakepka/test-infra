@@ -132,7 +132,7 @@ function testComponents() {
         COMPONENT_TO_TEST=$(basename "${DIR}")
         sendSlackNotification "${COMPONENT_TO_TEST}"
       fi
-      echo " └── finished ${DIR}""
+      echo " └── finished ${DIR}"
       
       set -e
     fi
