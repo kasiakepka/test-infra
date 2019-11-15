@@ -106,17 +106,19 @@ function testComponents() {
   do
 
     echo "processing ${DIR}"
-
+    echo "SOURCES: `$GOPATH/pkg/dep/sources`"
     # https://github.com/golang/dep/issues/2107
     rm -rf $GOPATH/pkg/dep/sources
-
+    echo "AFTER REMOVING: `$GOPATH/pkg/dep/sources`"
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
     if [ -f "${GOPKG_FILE_NAME}" ]; then
       # fetch dependencies
       echo " ├── fetching dependencies..."
       cd "${DIR}"
+      set +e
       dep ensure --vendor-only
+      set -e
 
       # scan for vulnerabilities
       echo " ├── scanning for vulnerabilities..."
