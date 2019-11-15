@@ -115,9 +115,7 @@ function testComponents() {
       cd "${DIR}"
       dep ensure --vendor-only
       if [[ $? != 0 ]]; then
-        for i in {1..5}; do
-          make resolve && break
-        done
+        break
       fi
 
       # scan for vulnerabilities
