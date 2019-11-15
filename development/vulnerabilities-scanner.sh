@@ -109,18 +109,15 @@ function testComponents() {
     GOPKG_FILE_NAME="${DIR}"Gopkg.lock
 
     if [ -f "${GOPKG_FILE_NAME}" ]; then
+      set +e
       # fetch dependencies
       echo " ├── fetching dependencies..."
       cd "${DIR}"
-      set +e
       dep ensure --vendor-only
-      set -e
 
       # scan for vulnerabilities
       echo " ├── scanning for vulnerabilities..."
-      set +e
       snyk test --severity-threshold=high --json > snyk-out.json
-      set -e
 
       # send notifications to slack if vulnerabilities was found
       OK=$(jq '.ok' < snyk-out.json)
@@ -132,8 +129,7 @@ function testComponents() {
       fi
       echo " └── finished"
 
-      rm -rf $GOPATH/pkg/dep/sources
-
+      set -e
     fi
   done
 }
