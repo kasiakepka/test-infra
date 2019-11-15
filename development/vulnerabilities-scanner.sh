@@ -115,26 +115,26 @@ function testComponents() {
       cd "${DIR}"
       dep ensure --vendor-only
       if [[ $? != 0 ]]; then
-        echo -e "\n---------------------Clould not test ${DIR}---------------------"
+        echo -e "\n------------------------------------------\nClould not test ${DIR}"
         echo -e "\n---------------------RETRY---------------------"
         dep ensure --vendor-only
-      else
-        # scan for vulnerabilities
-        echo " ├── scanning for vulnerabilities..."
-        snyk test --severity-threshold=high --json > snyk-out.json
 
-        # send notifications to slack if vulnerabilities was found
-        OK=$(jq '.ok' < snyk-out.json)
-        if [[ ${OK} == "false" ]]; then
-          echo " ├── sending notifications to slack..."
-
-          COMPONENT_TO_TEST=$(basename "${DIR}")
-          sendSlackNotification "${COMPONENT_TO_TEST}"
-        fi
-        echo " └── finished"
-      
       fi
 
+      # scan for vulnerabilities
+      echo " ├── scanning for vulnerabilities..."
+      snyk test --severity-threshold=high --json > snyk-out.json
+
+      # send notifications to slack if vulnerabilities was found
+      OK=$(jq '.ok' < snyk-out.json)
+      if [[ ${OK} == "false" ]]; then
+        echo " ├── sending notifications to slack..."
+
+        COMPONENT_TO_TEST=$(basename "${DIR}")
+        sendSlackNotification "${COMPONENT_TO_TEST}"
+      fi
+      echo " └── finished"
+      
       set -e
     fi
   done
