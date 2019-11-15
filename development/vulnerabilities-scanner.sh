@@ -115,12 +115,11 @@ function testComponents() {
       cd "${DIR}"
       dep ensure --vendor-only
       if [[ $? != 0 ]]; then
-        echo -e "\n------------------------------------------\nClould not test ${DIR}"
+        echo -e "\n-----------------------------------------------\nClould not test ${DIR}"
         echo -e "\n---------------------RETRY---------------------"
         dep ensure --vendor-only
 
       fi
-
       # scan for vulnerabilities
       echo " ├── scanning for vulnerabilities..."
       snyk test --severity-threshold=high --json > snyk-out.json
@@ -133,7 +132,7 @@ function testComponents() {
         COMPONENT_TO_TEST=$(basename "${DIR}")
         sendSlackNotification "${COMPONENT_TO_TEST}"
       fi
-      echo " └── finished"
+      echo " └── finished ${DIR}""
       
       set -e
     fi
