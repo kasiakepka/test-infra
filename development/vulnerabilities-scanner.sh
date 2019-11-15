@@ -115,10 +115,9 @@ function testComponents() {
       cd "${DIR}"
       dep ensure --vendor-only
       if [[ $? != 0 ]]; then
-        echo -e "\n********************************\n Clould not test ${DIR} \n********************************\n"
-        for i in {1..3}; do
-        dep ensure --vendor-only && break
-        done
+        echo -e "\n---------------------Clould not test ${DIR}---------------------"
+        echo -e "\n---------------------RETRY---------------------"
+        dep ensure --vendor-only
       else
         # scan for vulnerabilities
         echo " ├── scanning for vulnerabilities..."
