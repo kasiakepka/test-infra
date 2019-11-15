@@ -114,6 +114,11 @@ function testComponents() {
       echo " ├── fetching dependencies..."
       cd "${DIR}"
       dep ensure --vendor-only
+      if [[ $? != 0 ]]; then
+        for i in {1..5}; do
+          make resolve && break
+        done
+      fi
 
       # scan for vulnerabilities
       echo " ├── scanning for vulnerabilities..."
