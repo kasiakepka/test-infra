@@ -115,7 +115,7 @@ function testComponents() {
       cd "${DIR}"
       dep ensure --vendor-only
       if [[ $? != 0 ]]; then
-        echo -e "\n****************\n Clould not test ${DIR} \n****************\n"
+        echo -e "\n********************************\n Clould not test ${DIR} \n********************************\n"
       else
         # scan for vulnerabilities
         echo " ├── scanning for vulnerabilities..."
