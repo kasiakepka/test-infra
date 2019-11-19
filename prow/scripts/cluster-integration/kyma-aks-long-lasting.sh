@@ -37,6 +37,8 @@ if [ "${discoverUnsetVar}" = true ] ; then
 	exit 1
 fi
 
+export PATH="/usr/local/bin:${PATH}"
+
 # INIT ENVIRONMENT VARIABLES
 export TEST_INFRA_SOURCES_DIR="${KYMA_PROJECT_DIR}/test-infra"
 export TEST_INFRA_CLUSTER_INTEGRATION_SCRIPTS="${TEST_INFRA_SOURCES_DIR}/prow/scripts/cluster-integration/helpers"
