@@ -37,10 +37,6 @@ if [ "${discoverUnsetVar}" = true ] ; then
 	exit 1
 fi
 
-
-shout "KCTL Version: `kubectl version`"
-shout "PATH: ${PATH}"
-
 # INIT ENVIRONMENT VARIABLES
 export TEST_INFRA_SOURCES_DIR="${KYMA_PROJECT_DIR}/test-infra"
 export TEST_INFRA_CLUSTER_INTEGRATION_SCRIPTS="${TEST_INFRA_SOURCES_DIR}/prow/scripts/cluster-integration/helpers"
