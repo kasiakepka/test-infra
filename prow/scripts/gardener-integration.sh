@@ -63,6 +63,10 @@ kyma_cli() {
     popd
 }
 
+shout "Installing Kyma-cli"
+date
+kyma_cli
+
 shout "Provisioning Gardener"
 date
 sudo kyma provision gardener -c "${GARDENER_KYMA_PROW_KUBECONFIG}" -n kyma-gardener-cli -p kyma-prow -s neighbors-gardener-gcp
@@ -104,5 +108,3 @@ done
 shout "Uninstalling Kyma"
 date
 gcloud compute ssh --quiet --zone="${ZONE}" "cli-integration-test-${RANDOM_ID}" -- "sudo kyma uninstall --non-interactive"
-
-
