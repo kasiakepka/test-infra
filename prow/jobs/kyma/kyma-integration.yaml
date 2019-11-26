@@ -1275,7 +1275,7 @@ periodics:
     extra_refs:
       - org: kasiakepka
         repo: test-infra
-        base_ref: gardener
+        base_ref: cli-gardener
         path_alias: github.com/kyma-project/test-infra
       - <<: *kyma_ref
         base_ref: master
