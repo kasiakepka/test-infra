@@ -81,7 +81,7 @@ date
 
 shout "Running tests on Kyma"
 date
-#kyma test run \
+kyma test run \
                 --name "${SUITE_NAME}" \
                 --concurrency "${CONCURRENCY}" \
                 --max-retries 1 \
@@ -91,19 +91,7 @@ date
 
 echo "Check if the test succeeds"
 date
-attempts=3
-for ((i=1; i<=attempts; i++)); do
-    result=$(sudo kyma test status -o json" | jq '.status.results[0].status')
-    if [[ "$result" == *"Succeeded"* ]]; then
-        echo "The test succeeded"
-        break
-    elif [[ "${i}" == "${attempts}" ]]; then
-        echo "ERROR: test result is ${result}"
-        exit 1
-    fi
-    echo "Sleep for 15 seconds"
-    sleep 15
-done
+kyma test status "${SUITE_NAME}" -owide
 
 shout "Uninstalling Kyma"
 date
