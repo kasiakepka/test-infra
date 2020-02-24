@@ -177,9 +177,11 @@ function installKyma() {
 function addGithubDexConnector() {
     pushd "${KYMA_PROJECT_DIR}/test-infra/development/tools"
     dep ensure -v -vendor-only
+	echo "VENDOR COMPLETED"
     popd
     export DEX_CALLBACK_URL="https://dex.${DOMAIN}/callback"
-    go run "${KYMA_PROJECT_DIR}/test-infra/development/tools/cmd/enablegithubauth/main.go"
+    go run -v "${KYMA_PROJECT_DIR}/test-infra/development/tools/cmd/enablegithubauth/main.go"
+	echo "CONNECTOR ADDED"
 }
 
 function applyServiceCatalogCRDOverride(){
