@@ -38,6 +38,7 @@ spec:
             - --github-token-path=/etc/github/oauth
             - --build-cluster=/etc/cluster/cluster.yaml
             - --redirect-http-to=status.build.kyma-project.io
+            - --allow-insecure
           ports:
             - name: http
               containerPort: 8080
@@ -73,6 +74,12 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 3
             timeoutSeconds: 600
+            - name: oauth-config
+              mountPath: /etc/githuboauth
+              readOnly: true
+            - name: cookie-secret
+              mountPath: /etc/cookie
+              readOnly: true
       volumes:
         - name: config
           configMap:
@@ -94,3 +101,9 @@ spec:
           secret:
             defaultMode: 420
             secretName: workload-cluster
+        - name: oauth-config
+          secret:
+              secretName: github-oauth-config
+        - name: cookie-secret
+          secret:
+              secretName: cookie
