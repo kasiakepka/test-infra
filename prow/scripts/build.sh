@@ -23,7 +23,7 @@ function export_variables() {
     elif [[ "${BUILD_TYPE}" == "master" ]]; then
         DOCKER_TAG=$(echo "${PULL_BASE_SHA}" | cut -c1-8)
     elif [[ "${BUILD_TYPE}" == "release" ]]; then
-        echo $JOB_NAME
+        echo "$JOB_NAME 2"
         if [[ "${JOB_NAME}" == (^pre-rel\d\d\d-?(kyma-installer|kyma-artifacts|kyma-gke-integration|kyma-gke-central-connector|kyma-gke-upgrade)) ]]; then
             shout "Execute Job Guard for Release jobs"
             export TIMEOUT="75m"
